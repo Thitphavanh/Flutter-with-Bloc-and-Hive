@@ -30,7 +30,9 @@ class HomePage extends StatelessWidget {
             if (state is SuccessfulLoginState) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => TodoPage(username: state.username),
+                  builder: (context) => TodosPage(
+                    username: state.username,
+                  ),
                 ),
               );
             }
@@ -40,19 +42,27 @@ class HomePage extends StatelessWidget {
               return Column(
                 children: [
                   TextField(
-                    controller: usernameField,
                     decoration: InputDecoration(labelText: 'Username'),
+                    controller: usernameField,
                   ),
                   TextField(
-                    controller: passwordField,
                     obscureText: true,
+                    controller: passwordField,
                     decoration: InputDecoration(labelText: 'Password'),
                   ),
-                  TextButton(
-                    onPressed: () => BlocProvider.of<HomeBloc>(context).add(
-                      LoginEvent(usernameField.text, passwordField.text),
-                    ),
-                    child: Text('LOGIN'),
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                          onPressed: () => BlocProvider.of<HomeBloc>(context).add(
+                            LoginEvent(usernameField.text, passwordField.text),
+                          ),
+                          child: Text('LOGIN'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               );

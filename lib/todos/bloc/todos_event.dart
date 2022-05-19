@@ -9,5 +9,5 @@ class LoadTodosEvent extends TodosEvent {
 
   LoadTodosEvent(this.usename);
   @override
-  List<Object> get props => [usename];
+  List<Object?> get props => [usename];
 }

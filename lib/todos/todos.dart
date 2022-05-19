@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_with_bloc_and_hive/services/todo_service.dart';
 import 'package:flutter_with_bloc_and_hive/todos/bloc/todos_bloc.dart';
 
-class TodoPage extends StatelessWidget {
+class TodosPage extends StatelessWidget {
   final String username;
-  const TodoPage({
+  const TodosPage({
     Key? key,
     required this.username,
   }) : super(key: key);
