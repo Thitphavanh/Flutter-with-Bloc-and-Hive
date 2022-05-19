@@ -6,10 +6,12 @@ abstract class HomeState extends Equatable {
 }
 
 class HomeInitial extends HomeState {
-  HomeInitial();
+  final String? error;
+
+  HomeInitial({this.error});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }
 
 class SuccessfulLoginState extends HomeState {

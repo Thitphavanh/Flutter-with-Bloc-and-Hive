@@ -36,6 +36,16 @@ class HomePage extends StatelessWidget {
                 ),
               );
             }
+            if (state is HomeInitial) {
+              if (state.error != null)
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Error'),
+                    content: Text(state.error!),
+                  ),
+                );
+            }
           },
           builder: (context, state) {
             if (state is HomeInitial) {
@@ -51,16 +61,26 @@ class HomePage extends StatelessWidget {
                     decoration: InputDecoration(labelText: 'Password'),
                   ),
                   Row(
-                    mainAxisAlignment:MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextButton(
-                          onPressed: () => BlocProvider.of<HomeBloc>(context).add(
+                          onPressed: () =>
+                              BlocProvider.of<HomeBloc>(context).add(
                             LoginEvent(usernameField.text, passwordField.text),
                           ),
                           child: Text('LOGIN'),
                         ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          BlocProvider.of<HomeBloc>(context).add(
+                            RegisterAccountEvent(
+                                usernameField.text, passwordField.text),
+                          );
+                        },
+                        child: Text('REGISTER'),
                       ),
                     ],
                   ),
