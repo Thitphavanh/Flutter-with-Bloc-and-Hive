@@ -18,6 +18,7 @@ class TodosPage extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: Colors.red,
         backgroundColor: Colors.black,
+        elevation: 0,
         title: Text('Todo list'),
       ),
       body: BlocProvider(

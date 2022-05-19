@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       foregroundColor: Colors.red,
         backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
         elevation: 0,
         title: Text('Login to Todo App'),
       ),
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Error'),
+                    title: Text("Error"),
                     content: Text(state.error!),
                   ),
                 );
@@ -58,7 +58,9 @@ class HomePage extends StatelessWidget {
                   TextField(
                     obscureText: true,
                     controller: passwordField,
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -73,17 +75,20 @@ class HomePage extends StatelessWidget {
                           child: Text('LOGIN'),
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          BlocProvider.of<HomeBloc>(context).add(
-                            RegisterAccountEvent(
-                                usernameField.text, passwordField.text),
-                          );
-                        },
-                        child: Text('REGISTER'),
-                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                          onPressed: () {
+                            BlocProvider.of<HomeBloc>(context).add(
+                              RegisterAccountEvent(
+                                  usernameField.text, passwordField.text),
+                            );
+                          },
+                          child: Text('REGISTER'),
+                        ),
+                      )
                     ],
-                  ),
+                  )
                 ],
               );
             }

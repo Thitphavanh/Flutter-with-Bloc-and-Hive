@@ -12,6 +12,7 @@ class LoginEvent extends HomeEvent {
   LoginEvent(this.username, this.password);
 
   @override
+  // TODO: implement props
   List<Object?> get props => [username, password];
 }
 

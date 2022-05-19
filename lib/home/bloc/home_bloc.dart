@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_with_bloc_and_hive/services/authentication.dart';
 import 'package:flutter_with_bloc_and_hive/services/todo_service.dart';
-
 part 'home_event.dart';
 part 'home_state.dart';
 
@@ -20,16 +20,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<RegisterAccountEvent>((event, emit) async {
-      final result = await _auth.createUser(event.password, event.password);
+      final result = await _auth.createUser(event.username, event.password);
       switch (result) {
         case UserCreationResult.success:
           emit(SuccessfulLoginState(event.username));
           break;
         case UserCreationResult.failure:
           emit(HomeInitial(error: "There's been an error"));
+
           break;
         case UserCreationResult.already_exists:
           emit(HomeInitial(error: "User already exists"));
+
           break;
       }
     });
@@ -37,6 +39,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<RegisterServicesEvent>((event, emit) async {
       await _auth.init();
       await _todo.init();
+
+      emit(HomeInitial());
     });
   }
 }
